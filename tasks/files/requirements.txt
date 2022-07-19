@@ -1,0 +1,15 @@
+cryptography
+ansible
+passlib
+selinux
+lxml
+ansible-lint
+molecule
+molecule_docker
+molecule_podman
+pytest-testinfra
+flake8
+pylint
+yamllint
+pyOpenSSL
+

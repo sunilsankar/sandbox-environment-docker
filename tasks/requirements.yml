@@ -1,0 +1,7 @@
+# - name: "selinux"
+#   src: "https://github.com/sunilsankar/ansible-role-selinux.git"
+#   version: "master"
+
+- name: "java"
+  src: "https://github.com/sunilsankar/ansible-role-java.git"
+  version: "master"

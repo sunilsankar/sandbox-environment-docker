@@ -1,0 +1,43 @@
+scenario:
+  name: "almalinux"
+
+driver:
+  name: "docker"
+
+dependency:
+  name: "galaxy"
+  options:
+    role-file: "molecule/requirements.yml"
+provisioner:
+  name: "ansible"
+  playbooks:
+    prepare: "../shared/prepare.yml"
+    converge: "../shared/playbook.yml"
+  config_options:
+    defaullts:
+      callback_whitelist: "profile_tasks"
+      verbosity: 2
+      stdout_callback: "yaml"
+
+verifier:
+  name: "testinfra"
+  directory: "../shared/tests"
+  options:
+    junitxml: "TEST-testinfra.xml"
+
+platforms:
+  - name: "molecule-${BUILD_BUILDID:-1001}"
+    hostname: "molecule-${BUILD_BUILDID:-1001}.sunil.cc"
+    image: "docker.io/almalinux"
+    pre_build_image: true
+    pull: false
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    tmpfs:
+      - "/run"
+      - "/tmp"
+    capabilities:
+      - "SYS_ADMIN"
+    command: "/usr/sbin/init"
+    networks:
+      - name: "molecule-${BUILD_BUILDID:-1001}"
