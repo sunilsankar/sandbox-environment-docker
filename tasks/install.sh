@@ -1,8 +1,16 @@
 #!/bin/bash
+echo $FULLNAME
 dnf install epel-release -y
 dnf clean all
 dnf update -y
 dnf install sshpass python python3-pip gcc git cmake make gcc vim curl libnsl -y
+echo "
+[user]
+    name = $FULLNAME
+    email = $EMAILID
+" > /home/vagrant/.gitconfig
+chown vagrant:vagrant /home/vagrant/.gitconfig
+echo "$PUBLICKEY" >> /home/vagrant/.ssh/authorized_keys
 dnf remove docker \
                   docker-client \
                   docker-client-latest \
@@ -31,4 +39,3 @@ grub2-mkconfig -o /boot/grub2/grub.
 else 
 echo ""
 fi 
-init 6
