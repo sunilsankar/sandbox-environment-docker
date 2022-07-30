@@ -3,7 +3,34 @@
 Vagrant.configure(2) do |config|
   config.ssh.insert_key = false
   config.vm.synced_folder "./", "/vagrant"
-  config.vm.provision "shell", path: "tasks/install.sh"
+  class Username
+    def to_s
+        print "Virtual machine needs you proxy user and password.\n"
+        print "Username: " 
+        STDIN.gets.chomp
+    end
+end
+
+class Password
+    def to_s
+        begin
+        system 'stty -echo'
+        print "Password: "
+        pass = URI.escape(STDIN.gets.chomp)
+        ensure
+        system 'stty echo'
+        end
+        pass
+    end
+end
+    # print "Please insert your credentials\n"
+    # print "Username: "
+    # username = STDIN.gets.chomp
+    # print "Password: "
+    # password = STDIN.noecho(&:gets).chomp
+    # print "\n"
+  # config.vm.provision :shell, :path => "tasks/install.sh" , :args => [username, password]
+  config.vm.provision :shell, :path => "tasks/install.sh" , env: {"USERNAME" => Username.new, "PASSWORD" => Password.new}
   config.vm.define "sandbox-9" do |node|
   
     node.vm.box               = "almalinux/9"
@@ -29,4 +56,7 @@ Vagrant.configure(2) do |config|
      end
 
   end
+  #https://www.vagrantup.com/docs/triggers
+  #
+
 end

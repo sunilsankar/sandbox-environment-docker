@@ -1,4 +1,6 @@
 #!/bin/bash
+echo $USERNAME
+echo  $PASSWORD
 dnf install epel-release -y
 dnf clean all
 dnf update -y
@@ -31,4 +33,3 @@ grub2-mkconfig -o /boot/grub2/grub.
 else 
 echo ""
 fi 
-init 6
