@@ -6,9 +6,9 @@ dnf update -y
 dnf install sshpass python python3-pip gcc git cmake make gcc vim curl libnsl -y
 echo "
 [user]
-user.name=$FULLNAME
-user.email=$EMAILID
-" >> /home/vagrant/.gitconfig
+    name = $FULLNAME
+    email = $EMAILID
+" > /home/vagrant/.gitconfig
 chown vagrant:vagrant /home/vagrant/.gitconfig
 echo "$PUBLICKEY" >> /home/vagrant/.ssh/authorized_keys
 dnf remove docker \
