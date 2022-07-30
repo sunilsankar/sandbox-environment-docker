@@ -32,7 +32,7 @@ end
 # end
 class Publickey
     def to_s
-        print "Please enter the public key generated in your system <id_rsa.pub>"
+        print "Please enter the public key generated in your system <id_rsa.pub>\n"
         print "Publickey: "
         STDIN.gets.chomp
     end
