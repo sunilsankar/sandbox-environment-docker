@@ -34,7 +34,8 @@ CHECK_SYSTEMCTL=$(systemctl --version |grep systemd |awk '{print $2}')
 cp /vagrant/tasks/files/motd.sh /etc/profile.d/
 \cp /vagrant/tasks/files/login.py /usr/local/lib/python3.9/site-packages/molecule/command/login.py
 if [ "$CHECK_SYSTEMCTL" -gt "248" ]; then
-\cp /vagrant/tasks/files/grub /etc/default/grub
+#\cp /vagrant/tasks/files/grub /etc/default/grub
+sed -i '/GRUB_CMDLINE_LINUX=/c\GRUB_CMDLINE_LINUX="systemd.unified_cgroup_hierarchy=false"' /etc/default/grub
 grub2-mkconfig -o /boot/grub2/grub.
 else 
 echo ""
