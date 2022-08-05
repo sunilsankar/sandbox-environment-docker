@@ -1,4 +1,7 @@
-# sandbox-environment
+# Sandbox-Environment
+## Introduction
+This is my sandbox environment running almalinux9 and has docker molecule ansible packages preinstalled . I can use this environment to build all my ansible roles. The environment is compatible with libvirt virtualbox and parallels. You can check the `Vagrantfile` for further details.
+
 My sandbox env to build my ansible roles using molecules . We need to use vagrant and any virtual platform the choices are in my vagrant file
 - libvirt
 - virtualbox
