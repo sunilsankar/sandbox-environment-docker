@@ -9,7 +9,7 @@ My sandbox env to build my ansible roles using molecules . We need to use vagran
 - virtualbox
 - parallels
 
-My base image I use is almalinux/9. The container platform I use is podman
+My base image I use is almalinux/9. The container platform I use is docker
 ```
 vagrant up
 ```
